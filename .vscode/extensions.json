@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "pomdtr.excalidraw-editor",
+    "esbenp.prettier-vscode",
+    "bierner.markdown-mermaid",
+    "ms-dotnettools.vscode-dotnet-runtime",
+    "ms-dotnettools.csdevkit",
+    "ms-dotnettools.csharp",
+    "bradlc.vscode-tailwindcss"
+  ]
+}
