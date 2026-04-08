@@ -41,12 +41,7 @@ pipeline {
 
                 bat """
                 dotnet build "${solutionFilePath}" ^
-                --configuration ${configuration} ^
-                /p:Platform="${platform}" ^
-                /p:CollectCoverage=true ^
-                /p:maximumCpuCount=true ^
-                /t:Clean,Build ^
-                -v:m
+                --configuration ${configuration}
                 """
             }
         }
