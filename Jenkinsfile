@@ -1,21 +1,21 @@
 pipeline {
     agent any
-	
-	environement{
-	SolutionRootPath = "${env.WORKSPACE}/app/backend/AssetManagement"
-	solutionFilePath = "app/backend/AssetManagement/AssetManagement.sln"
-	configuration = "release"
-	platform = "x86"
-	}
+
+    environment {
+        SolutionRootPath = "${env.WORKSPACE}/app/backend/AssetManagement"
+        solutionFilePath = "${env.WORKSPACE}/app/backend/AssetManagement/AssetManagement.sln"
+        configuration = "Release"
+        platform = "x86"
+    }
 
     stages {
+
         stage('Hello') {
             steps {
                 echo 'Hello World'
-
             }
         }
-		
+
         stage('Create Hello File') {
             steps {
                 script {
@@ -26,29 +26,29 @@ pipeline {
                     }
                 }
             }
-			
         }
-		
-		stage('Build backend solution'){
-		 steps{
-		  echo "${env.WORKSPACE}"
-          echo "solutionFilePath"
-		  bat """
-               dotnet build "${SolutionFilePath}" ^
-               --configuration ${configuration} ^
-               /p:Platform="${platform}" ^
-               /p:CollectCoverage=true ^
-               /p:maximumCpuCount=true ^
-               /t:Clean,Build ^
-               -v:m ^
-               --no-restore
-           """ 
-		 }
-		
-		}
-		
+
+        stage('Restore') {
+            steps {
+                bat "dotnet restore \"${solutionFilePath}\""
+            }
+        }
+
+        stage('Build backend solution') {
+            steps {
+                echo "${env.WORKSPACE}"
+                echo "${solutionFilePath}"
+
+                bat """
+                dotnet build "${solutionFilePath}" ^
+                --configuration ${configuration} ^
+                /p:Platform="${platform}" ^
+                /p:CollectCoverage=true ^
+                /p:maximumCpuCount=true ^
+                /t:Clean,Build ^
+                -v:m
+                """
+            }
+        }
     }
 }
- 
-
- 
