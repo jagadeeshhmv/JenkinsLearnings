@@ -30,6 +30,8 @@ pipeline {
 
         stage('Restore') {
             steps {
+                 echo "${env.WORKSPACE}"
+                echo "${solutionFilePath}" 
                 bat "dotnet restore \"${solutionFilePath}\""
             }
         }
