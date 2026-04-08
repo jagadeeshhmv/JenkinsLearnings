@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'win-hmi'   // better to explicitly use your Windows agent
-    }
+    agent any
 
     environment {
         SolutionRootPath = "${env.WORKSPACE}/app/backend/AssetManagement"
