@@ -1,5 +1,12 @@
 pipeline {
     agent any
+	
+	environement{
+	SolutionRootPath = "${env.WORKSPACE}/app/backend/AssetManagement"
+	solutionFilePath = "app/backend/AssetManagement/AssetManagement.sln"
+	configuration = "release"
+	platform = "x86"
+	}
 
     stages {
         stage('Hello') {
@@ -8,6 +15,7 @@ pipeline {
 
             }
         }
+		
         stage('Create Hello File') {
             steps {
                 script {
@@ -18,7 +26,29 @@ pipeline {
                     }
                 }
             }
+			
         }
+		
+		stage('Build backend solution'){
+		 steps{
+		  echo "${env.WORKSPACE}"
+          echo "solutionFilePath"
+		  bat """
+               dotnet build "${SolutionFilePath}" ^
+               --configuration ${configuration} ^
+               /p:Platform="${platform}" ^
+               /p:CollectCoverage=true ^
+               /p:maximumCpuCount=true ^
+               /t:Clean,Build ^
+               -v:m ^
+               --no-restore
+           """ 
+		 }
+		
+		}
+		
     }
 }
+ 
+
  
