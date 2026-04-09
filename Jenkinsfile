@@ -15,14 +15,14 @@ pipeline {
                 echo "Solution Path: ${solutionFilePath}"
 
                 // Clean restore
-                //bat "dotnet restore \"${solutionFilePath}\""
+                bat "dotnet restore \"${solutionFilePath}\""
             }
         }
 
         stage('Use Common Groovy') {
             steps {
                 script {
-                    def common = load "scripts/CommonStages.groovy"
+                    def common = load "CommonStages.groovy"
 
                     common.sayHello("Jagadeesh")
 
