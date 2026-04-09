@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         SolutionRootPath = "${env.WORKSPACE}/app/backend/AssetManagement"
-        solutionFilePath = "/app/backend/AssetManagement/AssetManagement.sln"
+        solutionFilePath = "${env.WORKSPACE}/app/backend/AssetManagement/AssetManagement.sln"
         configuration = "Release"
     }
 
