@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    environment {
+    environment{
         SolutionRootPath = "${env.WORKSPACE}/app/backend/AssetManagement"
-        solutionFilePath = "${env.WORKSPACE}/app/backend/AssetManagement/AssetManagement.sln"
+        solutionFilePath = "${SolutionRootPath}/AssetManagement.sln"
         configuration = "Release"
     }
 
@@ -15,18 +15,7 @@ pipeline {
             }
         }
 
-        stage('Create Hello File') {
-            steps {
-                script {
-                    if (isUnix()) {
-                        sh 'echo "hello jen" > hello.txt'
-                    } else {
-                        bat 'echo hello jen > hello.txt'
-                    }
-                }
-            }
-        }
-
+      
         stage('Restore') {
             steps {
                 echo "Workspace: ${env.WORKSPACE}"
