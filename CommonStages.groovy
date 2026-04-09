@@ -9,3 +9,5 @@ def buildDotnet(solutionPath, config) {
                 --no-restore
                 """
 }
+
+return this
