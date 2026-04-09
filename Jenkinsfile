@@ -8,9 +8,18 @@ pipeline {
     }
 
     stages {
+      
+        stage('Restore') {
+            steps {
+                echo "Workspace: ${env.WORKSPACE}"
+                echo "Solution Path: ${solutionFilePath}"
 
+                // Clean restore
+                bat "dotnet restore \"${solutionFilePath}\""
+            }
+        }
 
-stage('Use Common Groovy') {
+        stage('Use Common Groovy') {
             steps {
                 script {
                     def common = load "scripts/CommonStages.groovy"
@@ -22,17 +31,6 @@ stage('Use Common Groovy') {
                         "${configuration}"
                     )
                 }
-            }
-        }
-
-      
-        stage('Restore') {
-            steps {
-                echo "Workspace: ${env.WORKSPACE}"
-                echo "Solution Path: ${solutionFilePath}"
-
-                // Clean restore
-                bat "dotnet restore \"${solutionFilePath}\""
             }
         }
 
