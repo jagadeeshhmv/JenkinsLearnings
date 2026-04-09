@@ -3,8 +3,9 @@ def sayHello(name) {
 }
 
 def buildDotnet(solutionPath, config) {
-    bat """
-    dotnet build "${solutionPath}" ^
-    --configuration ${config}
-    """
+                bat """
+                dotnet build "${solutionFilePath}" ^
+                --configuration ${configuration} ^
+                --no-restore
+                """
 }
