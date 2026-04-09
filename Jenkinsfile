@@ -34,17 +34,6 @@ pipeline {
             }
         }
 
-        stage('Build backend solution') {
-            steps {
-                echo "Building solution..."
-
-                bat """
-                dotnet build "${solutionFilePath}" ^
-                --configuration ${configuration} ^
-                --no-restore
-                """
-            }
-        }
 
         stage('Test') {
             steps {
