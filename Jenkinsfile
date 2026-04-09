@@ -9,9 +9,19 @@ pipeline {
 
     stages {
 
-        stage('Hello') {
+
+stage('Use Common Groovy') {
             steps {
-                echo 'Hello World'
+                script {
+                    def common = load "scripts/CommonStages.groovy"
+
+                    common.sayHello("Jagadeesh")
+
+                    common.buildDotnet(
+                        "${env.WORKSPACE}/app/backend/AssetManagement/AssetManagement.sln",
+                        "${configuration}"
+                    )
+                }
             }
         }
 
