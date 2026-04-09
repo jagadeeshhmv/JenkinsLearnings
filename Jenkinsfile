@@ -15,7 +15,7 @@ pipeline {
                 echo "Solution Path: ${solutionFilePath}"
 
                 // Clean restore
-                bat "dotnet restore \"${solutionFilePath}\""
+                //bat "dotnet restore \"${solutionFilePath}\""
             }
         }
 
