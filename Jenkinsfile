@@ -27,7 +27,7 @@ pipeline {
                     common.sayHello("Jagadeesh")
 
                     common.buildDotnet(
-                        "${env.WORKSPACE}/app/backend/AssetManagement/AssetManagement.sln",
+                        "${solutionFilePath}",
                         "${configuration}"
                     )
                 }
